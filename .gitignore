@@ -1,0 +1,15 @@
+**/.DS_Store
+**/gen
+**/out
+**/.idea/workspace.xml
+**/.idea/vcs.xml
+**/.idea/dictionaries
+**/bin
+**/build
+**/*.iml
+captures
+.gradle
+local.properties
+.idea
+**/.externalNativeBuild
+
