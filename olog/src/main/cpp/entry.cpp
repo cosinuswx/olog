@@ -66,8 +66,7 @@ JNIEXPORT void JNICALL Java_com_winom_olog_LogEntry_logWrite(JNIEnv *env,
                                                              jclass __unused clazz,
                                                              jstring jlog) {
     const char *log = env->GetStringUTFChars(jlog, NULL);
-    gLogInstance->logWrite(log);
-    gLogInstance->logWrite("\n");
+    gLogInstance->logWrite(2, log, "\n");
 
     env->ReleaseStringUTFChars(jlog, log);
 }

@@ -53,7 +53,7 @@ private:
 
 public:
     void logInit(const char *dir, const char *prefix, const char *postfix, const char *logEncodeArr, size_t encodeArrLength);
-    void logWrite(const char *str);
+    void logWrite(int arrNum, ...);
     void log_vprint(char prio, const char *tag, const char *fmt, va_list args);
     void logUninit();
 };

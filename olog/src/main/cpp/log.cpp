@@ -6,6 +6,8 @@
 #define LOG_MAGIC_HEAD 0x41530949
 #define LOG_MAGIC_END  0xb303423a
 
+typedef char* PCHAR;
+
 // 将内容放在缓存里面，到达一定数目再调用fwrite
 void OLog::cacheWrite(FILE *fp, const void *vdata, size_t len) {
     if (NULL == file) {
@@ -179,7 +181,7 @@ char OLog::fake_rand(char cur) {
     return (char) (((cur * 214013L + 2531011L) >> 16) & 0x7fff);
 }
 
-void OLog::logWrite(const char *str) {
+void OLog::logWrite(int arrNum, ...) {
     pthread_mutex_lock(&mutex);
 
     // 到了第二天,生成另外一个日志文件
@@ -194,7 +196,14 @@ void OLog::logWrite(const char *str) {
         logInit_noLock();
     }
 
-    logWrite_noLock(str);
+    va_list argptr;
+    va_start(argptr, arrNum);
+    const char* str;
+    while (arrNum--) {
+        str = va_arg(argptr, PCHAR);
+        logWrite_noLock(str);
+    }
+
     pthread_mutex_unlock(&mutex);
 }
 
@@ -205,14 +214,12 @@ void OLog::logUninit() {
 }
 
 void OLog::log_vprint(char prio, const char *tag, const char *fmt, va_list args) {
-    char buf[LOG_BUF_SIZE + 1];
+    char buf1[LOG_BUF_SIZE + 1];
+    char buf2[LOG_BUF_SIZE + 1];
 
     const char *formatstr = "[%c][%"PRIu64"][%s][%ld][";
-    snprintf(buf, LOG_BUF_SIZE, formatstr, prio, currentTimeMillis(), tag, gettid());
-    logWrite(buf);
+    snprintf(buf1, LOG_BUF_SIZE, formatstr, prio, currentTimeMillis(), tag, gettid());
+    vsnprintf(buf2, LOG_BUF_SIZE, fmt, args);
 
-    vsnprintf(buf, LOG_BUF_SIZE, fmt, args);
-    logWrite(buf);
-
-    logWrite("]\n");
+    logWrite(3, buf1, buf2, "\n");
 }
