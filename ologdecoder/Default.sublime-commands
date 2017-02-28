@@ -1,0 +1,6 @@
+[
+    {
+        "caption": "PluginForOLog: Decode Encrypt olog",
+        "command": "custom_filter", "args": {"source" : "commands", "cmd_line" : "decodeolog"}
+    }
+]

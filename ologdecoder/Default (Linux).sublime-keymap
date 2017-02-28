@@ -1,0 +1,4 @@
+[
+	{"keys": ["ctrl+shift+x", "ctrl+shift+f"], "command": "custom_filter", "args": {"inplace" : "no"}},
+	{"keys": ["ctrl+shift+x", "ctrl+shift+d"], "command": "custom_filter", "args": {"inplace" : "yes"}}
+]

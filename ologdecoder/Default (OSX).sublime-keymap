@@ -1,0 +1,4 @@
+[
+	{"keys": ["super+shift+x", "super+shift+f"], "command": "custom_filter", "args": {"source" : "hotkey", "inplace" : "no"}},
+	{"keys": ["super+shift+x", "super+shift+d"], "command": "custom_filter", "args": {"source" : "hotkey", "inplace" : "yes"}}
+]

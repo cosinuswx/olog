@@ -15,7 +15,7 @@ public class SampleApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Log.setLogImpl(new LogImpl(getExternalFilesDir(null).getAbsolutePath(), "Sample", ".flog"));
+        Log.setLogImpl(new LogImpl(getExternalFilesDir(null).getAbsolutePath(), "sample", ".olog"));
         Log.setLogLevel(Log.LEVEL_VERBOSE);
         Log.setLogToLogcat(false);
     }

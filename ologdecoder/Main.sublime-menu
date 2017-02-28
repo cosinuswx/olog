@@ -1,0 +1,12 @@
+[
+	{
+		"id": "file",
+		"children":
+		[
+			{
+				"caption": "Set File Encoding to",
+				 "command": "convert_to_utf8", "args": {"encoding": "Shift_JIS", "stamp": "0" }
+			},
+		]
+	}
+]

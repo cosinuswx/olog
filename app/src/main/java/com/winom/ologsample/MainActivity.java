@@ -26,11 +26,12 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             Random rand = new Random(System.currentTimeMillis());
             for (int i = 0; i < 100; ++i) {
-                int len = rand.nextInt() % 100 + 10;
+                int len = (Math.abs(rand.nextInt()) % 100) + 20;
                 StringBuilder builder = new StringBuilder();
                 for (int j = 0; j < len; ++j) {
                     builder.append(j % 10);
                 }
+                builder.append("end");
                 Log.d(TAG, builder.toString());
 
                 try {
