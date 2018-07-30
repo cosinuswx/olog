@@ -112,6 +112,8 @@ public class LogDecoder {
                 pos += 5;
             } else if ((outputArr[pos] & Integer.parseInt("11111110", 2)) == Integer.parseInt("11111100", 2)) {
                 pos += 6;
+            } else {
+                pos ++;
             }
         }
         return -1;
