@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.winom:olog:1.0.1'
+    compile 'com.winom:olog:1.0.2'
 }
 ```
 
