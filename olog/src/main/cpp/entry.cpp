@@ -74,7 +74,7 @@ JNIEXPORT void JNICALL Java_com_winom_olog_LogEntry_logWrite(JNIEnv *env,
 extern "C"
 JNIEXPORT void JNICALL Java_com_winom_olog_LogEntry_logUninit(JNIEnv __unused *env,
                                                               jclass __unused clazz) {
-    if (!gLogInstance) {
+    if (gLogInstance) {
         gLogInstance->logUninit();
         delete gLogInstance;
         gLogInstance = NULL;

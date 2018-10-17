@@ -208,16 +208,18 @@ void OLog::logWrite(int arrNum, ...) {
 }
 
 void OLog::logUninit() {
-    pthread_mutex_lock(&mutex);
+    int lock_result = pthread_mutex_trylock(&mutex);
     logUninit_noLock();
-    pthread_mutex_unlock(&mutex);
+    if (lock_result != EBUSY) {
+        pthread_mutex_unlock(&mutex);
+    }
 }
 
 void OLog::log_vprint(char prio, const char *tag, const char *fmt, va_list args) {
     char buf1[LOG_BUF_SIZE + 1];
     char buf2[LOG_BUF_SIZE + 1];
 
-    const char *formatstr = "[%c][%"PRIu64"][%s][%ld][";
+    const char *formatstr = "[%c][%" PRIu64 "][%s][%ld][";
     snprintf(buf1, LOG_BUF_SIZE, formatstr, prio, currentTimeMillis(), tag, gettid());
     vsnprintf(buf2, LOG_BUF_SIZE, fmt, args);
 

@@ -5,6 +5,7 @@
 #include <android/log.h>
 #include <unistd.h>
 #include <errno.h>
+#include <string.h>
 #define __STDC_FORMAT_MACROS
 
 #define TRUE  1
