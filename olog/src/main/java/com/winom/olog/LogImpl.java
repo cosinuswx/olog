@@ -1,27 +1,21 @@
 package com.winom.olog;
 
 import java.security.InvalidParameterException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Random;
 
 /**
  * @since 2016-07-23
- * @author kevinhuang 
+ * @author kevinhuang
  */
-public class LogImpl implements Log.ILog {
+public class LogImpl implements OLog.ILog {
     private final static String[] lvlStr = {"V", "D", "I", "W", "E"};
 
     // 日志的加密字串的长度，要与log.h保持同步
     private final static int LOG_ENCODE_LENGTH = 32;
 
-    String mLogDir;
-    String mPrefix;
-    String mPostfix;
+    private String mLogDir;
+    private String mPrefix;
+    private String mPostfix;
 
     public LogImpl(String logDir, String perfix, String postfix) {
         mLogDir = logDir;
@@ -31,7 +25,7 @@ public class LogImpl implements Log.ILog {
         init();
     }
 
-    void init() {
+    private void init() {
         // ndk中srand在某些机器上面找不到，还是直接传入吧
         byte[] key = generateRandomByteArr(LOG_ENCODE_LENGTH);
         LogEntry.logInit(mLogDir, mPrefix, mPostfix, key);
@@ -48,6 +42,7 @@ public class LogImpl implements Log.ILog {
         LogEntry.logUninit();
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static byte[] generateRandomByteArr(int len) {
         if ((len % 4) != 0) {
             throw new InvalidParameterException("length must be in multiples of four");

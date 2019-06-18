@@ -4,8 +4,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
-public class Log {
-    final static String TAG = "Log";
+public class OLog {
+    final static String TAG = "OLog";
 
     public interface ILog {
         void logWriter(int lvl, String tag, String text);
@@ -21,8 +21,8 @@ public class Log {
 
     public static ILog gLogImpl = new EmptyLog();
 
-    static int gLogLevel = LEVEL_INFO;
-    static boolean gLogToLogcat = false;
+    private static int gLogLevel = LEVEL_INFO;
+    private static boolean gLogToLogcat = false;
 
     public static void setLogLevel(int level) {
         gLogLevel = level;

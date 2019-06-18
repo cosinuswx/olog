@@ -2,7 +2,7 @@ package com.winom.ologsample;
 
 import android.app.Application;
 
-import com.winom.olog.Log;
+import com.winom.olog.OLog;
 import com.winom.olog.LogImpl;
 
 /**
@@ -15,8 +15,8 @@ public class SampleApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Log.setLogImpl(new LogImpl(getExternalFilesDir(null).getAbsolutePath(), "sample", ".olog"));
-        Log.setLogLevel(Log.LEVEL_VERBOSE);
-        Log.setLogToLogcat(false);
+        OLog.setLogImpl(new LogImpl(getExternalFilesDir(null).getAbsolutePath(), "sample", ".olog"));
+        OLog.setLogLevel(OLog.LEVEL_VERBOSE);
+        OLog.setLogToLogcat(false);
     }
 }

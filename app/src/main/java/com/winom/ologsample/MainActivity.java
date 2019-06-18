@@ -3,7 +3,7 @@ package com.winom.ologsample;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.winom.olog.Log;
+import com.winom.olog.OLog;
 
 import java.util.Random;
 
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                     builder.append(j % 10);
                 }
                 builder.append("end");
-                Log.d(TAG, builder.toString());
+                OLog.d(TAG, builder.toString());
 
                 try {
                     sleep(3);
